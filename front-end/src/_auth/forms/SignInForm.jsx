@@ -6,14 +6,19 @@ function SignInForm() {
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
   const navigate = useNavigate()
+
+
+  axios.defaults.withCredentials = true ;
+
+
   async function submit(e){
     e.preventDefault();
 
-    axios.post('http://localhost:3001/sign-in',{
+    axios.post('http://localhost:3001/auth/sign-in',{
         email,password
     })
-      .then(result=>{console.log(result)
-        if(result.data=== "succes"){
+      .then(response=>{console.log(response)
+        if(response.data.status){
           navigate('/')
 
         }

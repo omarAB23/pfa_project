@@ -44,14 +44,15 @@ function SignUpForm() {
       return;
     }
 
-    axios.post('http://localhost:3001/sign-up', {
+    axios.post('http://localhost:3001/auth/sign-up', {
       email,
       password,
       name
     })
-    .then(result => {
-      console.log(result);
-      navigate('/sign-in');
+    .then(response => {
+      if(response.data.status){
+        navigate('/sign-in');
+      }
     })
     .catch(err => console.log(err));
   }

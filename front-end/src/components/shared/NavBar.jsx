@@ -1,13 +1,43 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const navigate = useNavigate
+  axios.defaults.withCredentials = true ;
+
+  useEffect(()=>{
+    axios.get('http://localhost:3001/auth/verify')
+      .then(res => {
+        console.log(res.data)
+        if(res.data.status){
+          setIsLoggedIn(true)
+        }else{
+          setIsLoggedIn(false)
+
+        }
+      })
+  },[])
+
 
  
-
+  const handleLogOut = () => {
+    console.log("Logging out...");
+    axios.get('http://localhost:3001/auth/logout')
+      .then(res => {
+        console.log("Logout response:", res);
+        if (res.data.status) {
+          navigate('/');
+        }
+      })
+      .catch(err => {
+        console.error("Logout error:", err);
+      });
+  };
   
-
+  
+ 
   return (
     <header className="bg-gray-800 mb-0">
       <nav className="container mx-auto px-6 py-3">
@@ -23,9 +53,9 @@ const NavBar = () => {
               <li><a href="#" className="text-white">ajouter un trajet</a></li>
               <li><a href="#" className="text-white">Contact</a></li>
               {!isLoggedIn ? (
-                <Link className="text-white border-solid border border-white px-4 py-2 rounded transition duration-300 hover:bg-white hover:text-gray-800" to='/sign-in'>Get started</Link>
+                <Link className="text-white border-solid border border-white px-4 py-2 rounded transition duration-300 hover:bg-white hover:text-gray-800" to='/sign-up'>Get started</Link>
               ) : (
-                <Link  className="text-white border-solid border border-white px-4 py-2 rounded transition duration-300 hover:bg-white hover:text-gray-800" to='/sign-up'>Sign-out</Link>
+                <Link onClick={handleLogOut}  className="text-white border-solid border border-white px-4 py-2 rounded transition duration-300 hover:bg-white hover:text-gray-800" to='/'>Sign-out</Link>
               )}
             </ul>
           </div>
