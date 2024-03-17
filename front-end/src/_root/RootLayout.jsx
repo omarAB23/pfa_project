@@ -1,9 +1,14 @@
-import Home from "./pages/Home"
+import Footer from "@/components/shared/Footer"
+import NavBar from "@/components/shared/NavBar"
+import { Outlet } from "react-router-dom"
+
 
 const RootLayout = () => {
   return (
-    <div>
-      <Home/>
+    <div className="w-full">
+      <NavBar/>
+      <Outlet/>
+      <Footer/>
     </div>
   )
 }

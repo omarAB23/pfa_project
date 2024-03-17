@@ -36,7 +36,7 @@ const NavBar = () => {
   };
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen); // Toggles the mobile menu visibility
+    setIsMobileMenuOpen(!isMobileMenuOpen); 
   };
 
   return (

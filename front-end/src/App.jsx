@@ -5,6 +5,8 @@ import AuthLayout from "./_auth/AuthLayout"
 import RootLayout from "./_root/RootLayout"
 import Home from "./_root/pages/Home"
 import"./global.css"
+import SearchResults from "./_root/pages/SearchResults"
+import MoreInfo from "./_root/pages/MoreInfo"
 
 const App = () => {
   return (
@@ -18,6 +20,9 @@ const App = () => {
 
         <Route element={<RootLayout/>}>
           <Route index element={<Home/>}/>
+          <Route path="/search-result" element={<SearchResults/>}/>
+          <Route path="/more-info" element={<MoreInfo/>}/>
+
         </Route>
       </Routes>
       
