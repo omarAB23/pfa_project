@@ -1,11 +1,14 @@
 import  { useState } from 'react'
 import './searchForm.css'
 import searchImage from '../../../public/assets/211817_search_strong_icon.png'
-const SearchForm = () => {
+const SearchForm = (props) => {
   const [location, setLocation] = useState('');
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [guests, setGuests] = useState('');
+
+  const isLoggedIn =  props.isLoggedIn
+
 
   const handleLocationChange = (e) => {
     setLocation(e.target.value);
@@ -25,6 +28,9 @@ const SearchForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(!isLoggedIn){
+      alert('you need to sign-in')
+    }
     // Here you can perform the search or any other action with the form data
     console.log('Location:', location);
     console.log('Check In:', checkIn);

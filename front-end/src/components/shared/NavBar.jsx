@@ -39,6 +39,12 @@ const NavBar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen); 
   };
 
+  const checkUser = ()=>{
+    if(!isLoggedIn){
+      alert('you need to sign-in')
+    }
+  }
+
   return (
     <header className="bg-gray-800 mb-0">
       <nav className="container mx-auto px-6 py-3">
@@ -49,10 +55,23 @@ const NavBar = () => {
           </div>
           <div className="hidden md:block">
             <ul className="flex items-center space-x-8">
-              <li><a href="#" className="text-white">Home</a></li>
-              <li><a href="#" className="text-white">rechercher</a></li>
-              <li><a href="#" className="text-white">ajouter un trajet</a></li>
-              <li><a href="#" className="text-white">Contact</a></li>
+              {!isLoggedIn? (
+                <>
+                  <Link  to='/' className="text-white">Home</Link>
+                  <Link onClick={checkUser}  className="text-white">rechercher</Link>
+                  <Link onClick={checkUser}  className="text-white">ajouter un trajet</Link>
+                  <Link className="text-white">Contact</Link>
+                </>
+              ) :(
+                <>
+                  <Link  to='/' className="text-white">Home</Link>
+                  <Link  to='/search-result' className="text-white">rechercher</Link>
+                  <Link  to='publish-route' className="text-white">ajouter un trajet</Link>
+                  <Link className="text-white">Contact</Link>
+                </>
+              )}
+              
+              
               {!isLoggedIn ? (
                 <Link className="text-white border-solid border border-white px-4 py-2 rounded transition duration-300 hover:bg-white hover:text-gray-800" to='/sign-up'>Get started</Link>
               ) : (
