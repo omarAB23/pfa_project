@@ -7,6 +7,7 @@ import Home from "./_root/pages/Home"
 import"./global.css"
 import SearchResults from "./_root/pages/SearchResults"
 import MoreInfo from "./_root/pages/MoreInfo"
+import PublishRoute from "./_root/pages/PublichRoute"
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route index element={<Home/>}/>
           <Route path="/search-result" element={<SearchResults/>}/>
           <Route path="/more-info" element={<MoreInfo/>}/>
+          <Route path="/publish-route" element={<PublishRoute/>}/>
 
         </Route>
       </Routes>

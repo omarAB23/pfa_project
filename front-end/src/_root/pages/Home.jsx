@@ -7,6 +7,8 @@ import CarpoolSearch from "../../components/Home-components/CarpoolSearch"
 
 
 const Home = () => {
+  
+
   return (
     <div className="w-screen">
       

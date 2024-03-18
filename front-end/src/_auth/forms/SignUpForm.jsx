@@ -50,6 +50,7 @@ function SignUpForm() {
       name
     })
     .then(response => {
+      console.log(response.data)
       if(response.data.status){
         navigate('/sign-in');
       }

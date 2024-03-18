@@ -21,7 +21,7 @@ router.post('/sign-up',async (req,res)=>{
     })
 
     await newUser.save()
-    return res.json({messaage: 'registerd'})
+    return res.json({messaage: 'registerd' , status: true})
 
 })
 
