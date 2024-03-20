@@ -7,7 +7,7 @@ const PostSchema = new mongoose.Schema({
     price:{ type:Number , required :true } , 
     contact:{ type: String , required :true } , 
     date:{ type: Date , required :true } , 
-    condition:{ type:String ,  } , 
+    condition:{ type:String } , 
     desc:{ type:String  } , 
 })
 

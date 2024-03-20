@@ -4,7 +4,7 @@ const PostModel = require('../models/post')
 
 
 router.post('/add' , async (req,res)=>{
-    const {depart,arrivee,place,contact,price,date,Condition,desc} = req.body
+    const {depart,arrivee,place,contact,price,date,condition,desc} = req.body
     
     const newPost = PostModel({
         depart,
@@ -13,7 +13,7 @@ router.post('/add' , async (req,res)=>{
         contact,
         price,
         date,
-        Condition,
+        condition,
         desc
     })
 
@@ -22,6 +22,11 @@ router.post('/add' , async (req,res)=>{
 })
 
 
+
+router.get('/getAllPosts',async (req,res)=>{
+    const allPosts = await PostModel.find({})
+    return res.json({status:true , data : allPosts })
+})
 
 
 

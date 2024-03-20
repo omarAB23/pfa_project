@@ -17,7 +17,7 @@ function SignInForm() {
     axios.post('http://localhost:3001/auth/sign-in',{
         email,password
     })
-      .then(response=>{console.log(response)
+      .then(response=>{
         if(response.data.status){
           navigate('/')
 

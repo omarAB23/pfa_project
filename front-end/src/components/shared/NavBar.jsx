@@ -11,7 +11,6 @@ const NavBar = () => {
   useEffect(() => {
     axios.get('http://localhost:3001/auth/verify')
       .then(res => {
-        console.log(res.data)
         if (res.data.status) {
           setIsLoggedIn(true);
         } else {
@@ -24,7 +23,6 @@ const NavBar = () => {
     console.log("Logging out...");
     axios.get('http://localhost:3001/auth/logout')
       .then(res => {
-        console.log("Logout response:", res);
         if (res.data.status) {
           navigate('/');
           window.location.reload();

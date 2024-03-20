@@ -1,7 +1,9 @@
+import PropTypes from 'prop-types';
 import SearchForm from "../shared/SearchBar";
 
 function CarpoolSearch(props) {
-  const isLoggedIn =  props.isLoggedIn
+  const { isLoggedIn } = props;
+  
   return (
     <section className="search flex flex-col items-center bg-cover h-96  bg-no-repeat"  style={{backgroundImage: "url('assets/hero 1.png')"}}>
       <div className="tittle py-10 text-white font-bold flex flex-col items-center">
@@ -13,5 +15,9 @@ function CarpoolSearch(props) {
     </section>
   );
 }
+
+CarpoolSearch.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired
+};
 
 export default CarpoolSearch;

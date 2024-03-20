@@ -9,7 +9,7 @@ const PublishRoute = () => {
     const [contact , setContact] = useState('')
     const [price , setPrice] = useState('')
     const [date , setDate] = useState('')
-    const [Condition , setCondition] = useState('')
+    const [condition , setCondition] = useState('')
     const [desc , setDesc] = useState('')
 
     console.log(date)
@@ -20,7 +20,7 @@ const PublishRoute = () => {
         e.preventDefault();
 
         axios.post('http://localhost:3001/post/add',{
-        depart,arrivee,place,contact,price,date,Condition,desc
+        depart,arrivee,place,contact,price,date,condition,desc
         })
         .then(response=>{
             if(response.data.status){
@@ -74,11 +74,11 @@ const PublishRoute = () => {
                     </div>
                     <div className="col-span-full">
                         <label htmlFor="conditions" className="text-sm font-medium text-gray-900 block mb-2">🚦 Conditions</label>
-                        <textarea onChange={(e)=>{setCondition(e.target.value)}} id="product-details" rows="2" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-4" placeholder="votre trajet"></textarea>
+                        <textarea onChange={(e)=>{setCondition(e.target.value)}}  rows="2" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-4" placeholder="votre trajet"></textarea>
                     </div>
                     <div className="col-span-full">
                         <label htmlFor="product-details" className="text-sm font-medium text-gray-900 block mb-2">Description</label>
-                        <textarea onChange={(e)=>{setDesc(e.target.value)}} id="product-details" rows="6" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-4" placeholder="Details"></textarea>
+                        <textarea onChange={(e)=>{setDesc(e.target.value)}}  rows="6" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-4" placeholder="Details"></textarea>
                     </div>
                 </div>
             </form>

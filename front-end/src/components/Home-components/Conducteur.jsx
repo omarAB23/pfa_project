@@ -1,13 +1,16 @@
+import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 
 const Conducteur = (props) => {
 
-  const isLoggedIn = props.isLoggedIn
-  const checkUser = ()=>{
-    if(!isLoggedIn){
-      alert('you need to sign-in')
+  const { isLoggedIn } = props;
+  
+  const checkUser = () => {
+    if (!isLoggedIn) {
+      alert('you need to sign-in');
     }
   }
+  
   return (
     <section className="conducteur h-80 flex flex-col items-center pt-16 bg-gray-800 text-white py-10 h-422">
       <div className="conducteur-wrapper flex flex-col items-center">
@@ -30,6 +33,10 @@ const Conducteur = (props) => {
       </div>
     </section>
   );
+};
+
+Conducteur.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired
 };
 
 export default Conducteur;
