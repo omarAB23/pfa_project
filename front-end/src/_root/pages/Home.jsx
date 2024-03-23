@@ -10,6 +10,7 @@ const Home = () => {
 
   useEffect(() => {
     axios.get("http://localhost:3001/auth/verify").then((res) => {
+      console.log(res.data);
       if (res.data.status) {
         setIsLoggedIn(true);
       } else {
