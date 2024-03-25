@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 
 const PostSchema = new mongoose.Schema({
+    nomconducteur : { type:String    } , 
+    idconducteur : { type:String  } , 
     depart:{ type:String , required :true } , 
     arrivee:{ type:String , required :true } , 
     place:{ type: Number , required :true } , 

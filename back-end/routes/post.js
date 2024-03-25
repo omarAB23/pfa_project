@@ -5,7 +5,8 @@ const PostModel = require('../models/post')
 
 router.post('/add' , async (req,res)=>{
     const {depart,arrivee,place,contact,price,date,condition,desc} = req.body
-    
+    const  idconducteur = req.body.idFromToken
+    const  nomconducteur = req.body.nameFromToken
     const newPost = PostModel({
         depart,
         arrivee,
@@ -14,11 +15,13 @@ router.post('/add' , async (req,res)=>{
         price,
         date,
         condition,
-        desc
+        desc,
+        idconducteur,
+        nomconducteur
     })
 
     await newPost.save()
-    return res.json({messaage: 'post added' , status: true})
+    return res.json({messaage: 'post added' , status: true, id:idconducteur})
 })
 
 

@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
+import { Bounce, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const NavBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu visibility
@@ -39,7 +40,17 @@ const NavBar = () => {
 
   const checkUser = ()=>{
     if(!isLoggedIn){
-      alert('you need to sign-in')
+      toast.warn('you need to sign-in', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
     }
   }
 
@@ -58,14 +69,13 @@ const NavBar = () => {
                   <Link  to='/' className="text-white">Home</Link>
                   <Link onClick={checkUser}  className="text-white">rechercher</Link>
                   <Link onClick={checkUser}  className="text-white">ajouter un trajet</Link>
-                  <Link className="text-white">Contact</Link>
                 </>
               ) :(
                 <>
                   <Link  to='/' className="text-white">Home</Link>
                   <Link  to='/search-result' className="text-white">rechercher</Link>
                   <Link  to='publish-route' className="text-white">ajouter un trajet</Link>
-                  <Link className="text-white">Contact</Link>
+                  <Link to='/profile' className="text-white">Votre profile</Link>
                 </>
               )}
               
@@ -107,9 +117,9 @@ const NavBar = () => {
               
               <div className='flex justify-center'>
                 {!isLoggedIn ? (
-                  <Link className="text-white block  text-center  border-solid border border-white px-4 py-2 rounded transition duration-300 hover:bg-white hover:text-gray-800" to='/sign-up'>Get started</Link>
+                  <Link className="text-white border-solid border border-white px-4 py-2 rounded transition duration-300 hover:bg-white hover:text-gray-800" to='/sign-up'>Get started</Link>
                 ) : (
-                  <Link onClick={handleLogOut} className="text-white mt-4  border-solid border border-white px-4 py-2 rounded transition duration-300 hover:bg-white hover:text-gray-800" to='/'>Sign-out</Link>
+                  <Link onClick={handleLogOut} className="text-white border-solid border border-white px-4 py-2 rounded transition duration-300 hover:bg-white hover:text-gray-800" to='/'>Sign-out</Link>
                 )}
 
               </div>

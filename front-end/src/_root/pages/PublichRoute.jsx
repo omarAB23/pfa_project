@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Bounce, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PublishRoute = () => {
     const [depart , setDepart] = useState('')
@@ -11,8 +13,17 @@ const PublishRoute = () => {
     const [date , setDate] = useState('')
     const [condition , setCondition] = useState('')
     const [desc , setDesc] = useState('')
+    const [nameFromToken , setNameFromToken] = useState('')
+    const [idFromToken , setIdFromToken] = useState('')
 
-    console.log(date)
+    axios.get('http://localhost:3001/auth/gettoken')
+    .then(respose=>setNameFromToken(respose.data.token.name))
+    .catch(error=>console.log(error))
+
+    axios.post('http://localhost:3001/auth/getuser',{nameFromToken})
+    .then(response=>setIdFromToken(response.data.currentUser._id))
+    .catch(error=>console.log(error))
+
 
     const navigate = useNavigate()
 
@@ -20,18 +31,28 @@ const PublishRoute = () => {
         e.preventDefault();
 
         axios.post('http://localhost:3001/post/add',{
-        depart,arrivee,place,contact,price,date,condition,desc
+        depart,arrivee,place,contact,price,date,condition,desc,idFromToken,nameFromToken
         })
         .then(response=>{
             if(response.data.status){
                 navigate('/')
-                alert('post publiee')
+                toast.success(' post publuee', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                    });
             }
         })
         .catch(error=>console.log(error))
     }
 
-    
+
     
 
     

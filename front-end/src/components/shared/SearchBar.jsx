@@ -40,7 +40,7 @@ const SearchForm = (props) => {
 
   return (
       <form className="bar" onSubmit={handleSubmit}>
-        <div className="location">
+        <div className="location ">
           <p>Location</p>
           <input type="text" placeholder="ville de depart" value={location} onChange={handleLocationChange} />
         </div>
