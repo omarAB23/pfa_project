@@ -49,7 +49,7 @@ const NavBar = () => {
         <div className="flex items-center justify-between">
           <div className="flex gap-4 text-white font-bold text-xl">
             <img src="/assets/logo.svg" alt="" />
-            <a href="#">LinkRide</a>
+            <Link to='/'>LinkRide</Link>
           </div>
           <div className="hidden md:block">
             <ul className="flex items-center space-x-8">
@@ -88,19 +88,35 @@ const NavBar = () => {
         {isMobileMenuOpen && (
           <div className="mobile-menu md:hidden pb-4  ">
             <ul className="mt-4 space-y-4">
-              <li><a href="#" className="block px-4 py-2 text-white bg-gray-900 rounded">Home</a></li>
-              <li><a href="#" className="block px-4 py-2 text-white bg-gray-900 rounded">About</a></li>
-              <li><a href="#" className="block px-4 py-2 text-white bg-gray-900 rounded">Services</a></li>
-              <li><a href="#" className="block px-4 py-2 text-white bg-gray-900 rounded">Contact</a></li>
-              <li><a href="#" className="block px-4 py-2  text-center rounded">
-                
+
+              {!isLoggedIn? (
+                <>
+                  <Link   to='/' className="block px-4 py-2 text-white bg-gray-900 rounded">Home</Link>
+                  <Link onClick={checkUser}  className="block px-4 py-2 text-white bg-gray-900 rounded">rechercher</Link>
+                  <Link onClick={checkUser}  className="block px-4 py-2 text-white bg-gray-900 rounded">ajouter un trajet</Link>
+                  <Link className="block px-4 py-2 text-white bg-gray-900 rounded">Contact</Link>
+                </>
+              ) :(
+                <>
+                  <Link  to='/' className="block px-4 py-2 text-white bg-gray-900 rounded">Home</Link>
+                  <Link  to='/search-result' className="block px-4 py-2 text-white bg-gray-900 rounded">rechercher</Link>
+                  <Link  to='publish-route' className="block px-4 py-2 text-white bg-gray-900 rounded">ajouter un trajet</Link>
+                  <Link className="block px-4 py-2 text-white bg-gray-900 rounded">Contact</Link>
+                </>
+              )}
+              
+              <div className='flex justify-center'>
                 {!isLoggedIn ? (
-                  <Link className="text-white border-solid border border-white px-4 py-2 rounded transition duration-300 hover:bg-white hover:text-gray-800" to='/sign-up'>Get started</Link>
+                  <Link className="text-white block  text-center  border-solid border border-white px-4 py-2 rounded transition duration-300 hover:bg-white hover:text-gray-800" to='/sign-up'>Get started</Link>
                 ) : (
-                  <Link onClick={handleLogOut} className="text-white border-solid border border-white px-4 py-2 rounded transition duration-300 hover:bg-white hover:text-gray-800" to='/'>Sign-out</Link>
+                  <Link onClick={handleLogOut} className="text-white mt-4  border-solid border border-white px-4 py-2 rounded transition duration-300 hover:bg-white hover:text-gray-800" to='/'>Sign-out</Link>
                 )}
-                </a>
-              </li>
+
+              </div>
+
+              
+
+
             </ul>
           </div>
         )}

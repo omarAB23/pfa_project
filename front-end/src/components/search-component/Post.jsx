@@ -26,7 +26,7 @@ const Post = (props) => {
 
 
   return (
-    <div className="mx-auto h-60 flex my-11 w-1/2 transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg">
+    <div className="mx-auto h-60 flex my-11 px-10 lg:w-1/2 transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg">
       <img className="h-full w-1/3 object-cover object-center transform scale-95" src="assets/wayp1.png" alt="Product Image" />
       <div className="p-4  w-2/3">
         <h2 className="mb-2 text-lg font-medium dark:text-white text-gray-900">{post.depart}</h2>
