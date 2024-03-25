@@ -8,6 +8,8 @@ import "./global.css";
 import SearchResults from "./_root/pages/SearchResults";
 import MoreInfo from "./_root/pages/MoreInfo";
 import PublishRoute from "./_root/pages/PublichRoute";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (
@@ -26,6 +28,7 @@ const App = () => {
           <Route path="/publish-route" element={<PublishRoute />} />
         </Route>
       </Routes>
+      <ToastContainer />
     </main>
   );
 };

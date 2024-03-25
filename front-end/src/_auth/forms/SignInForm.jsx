@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function SignInForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   axios.defaults.withCredentials = true;
@@ -11,18 +15,33 @@ function SignInForm() {
   async function submit(e) {
     e.preventDefault();
 
-    axios
-      .post("http://localhost:3001/auth/sign-in", {
+    try {
+      const response = await axios.post("http://localhost:3001/auth/sign-in", {
         email,
         password,
-      })
-      .then((response) => {
-        console.log(response);
-        if (response.data.status) {
-          navigate("/");
-        }
-      })
-      .catch((err) => console.log(err));
+      });
+
+      console.log(response);
+      setError(response.data.message);
+
+      if (response.data.status) {
+        navigate("/");
+      } else {
+        toast.error(error, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (

@@ -2,21 +2,14 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const Conducteur = (props) => {
-<<<<<<< Updated upstream
   const { isLoggedIn } = props;
 
-=======
-  const isLoggedIn = props.iisLoggedIn;
->>>>>>> Stashed changes
   const checkUser = () => {
     if (!isLoggedIn) {
       alert("you need to sign-in");
     }
   };
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
   return (
     <section className="conducteur h-80 flex flex-col items-center pt-16 bg-gray-800 text-white py-10 h-422">
       <div className="conducteur-wrapper flex flex-col items-center">
