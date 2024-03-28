@@ -7,16 +7,9 @@ const SearchResults = () => {
   useEffect(() => {
     axios
       .get("http://localhost:3001/post/getAllPosts")
-      .then((response) => {
-        setData(response.data.data);
-        console.log(response);
-      })
+      .then((response) => setData(response.data.data))
       .catch((error) => console.log(error));
   }, []); // Empty dependency array to ensure the effect runs only once
-
-  const handleClick = () => {
-    console.log("clicked");
-  };
 
   return (
     <div>

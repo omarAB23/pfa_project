@@ -23,33 +23,11 @@ router.post("/sign-up", async (req, res) => {
   return res.json({ messaage: "registerd", status: true });
 });
 
-/* router.post("/sign-in", async (req, res) => {
-  const { email, password } = req.body;
-  const user = await UserModel.findOne({ email });
-  if (!user) {
-    return res.json({ message: "user is not registerd" });
-  }
-
-  const validPassword = await bcrypt.compare(password, user.password);
-
-  if (!validPassword) {
-    res.json({ message: "password is incorrect" });
-  }
-
-  const token = jwt.sign({ name: user.name }, process.env.KEY, {
-    expiresIn: "1h",
-  });
-
-  res.cookie("token", token, { httpOnly: true, maxAge: " 3600000" });
-
-  return res.json({ status: true, message: "login successfully" });
-}); */
 router.post("/sign-in", async (req, res) => {
   const { email, password } = req.body;
   const user = await UserModel.findOne({ email });
-
   if (!user) {
-    return res.json({ message: "user is not registered" });
+    return res.json({ message: "user is not registerd or wrong email" });
   }
 
   const validPassword = await bcrypt.compare(password, user.password);
@@ -64,7 +42,6 @@ router.post("/sign-in", async (req, res) => {
 
   res.cookie("token", token, { httpOnly: true, maxAge: " 3600000" });
 
-  // Final response after successful login
   return res.json({ status: true, message: "login successfully" });
 });
 
@@ -81,6 +58,23 @@ const verifyUser = async (req, res, next) => {
     return res.json({ error });
   }
 };
+
+router.get("/gettoken", async (req, res) => {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.json({ message: "no user logged in" });
+  }
+
+  const decoded = await jwt.verify(token, process.env.KEY);
+
+  return res.json({ token: decoded });
+});
+
+router.post("/getuser", async (req, res) => {
+  const name = req.body.nameFromToken;
+  const currentUser = await UserModel.findOne({ name });
+  return res.json({ status: true, currentUser: currentUser });
+});
 
 router.get("/verify", verifyUser, (req, res) => {
   return res.json({ status: true, messaage: "authorised" });
