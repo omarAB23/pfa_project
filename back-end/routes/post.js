@@ -20,25 +20,6 @@ router.post("/add", async (req, res) => {
     nomconducteur,
   });
 
-<<<<<<< HEAD
-router.post('/add' , async (req,res)=>{
-    const {depart,arrivee,place,contact,price,date,condition,desc} = req.body
-    
-    const newPost = PostModel({
-        depart,
-        arrivee,
-        place,
-        contact,
-        price,
-        date,
-        condition,
-        desc
-    })
-
-    await newPost.save()
-    return res.json({messaage: 'post added' , status: true})
-})
-=======
   await newPost.save();
   return res.json({ messaage: "post added", status: true, id: idconducteur });
 });
@@ -47,7 +28,6 @@ router.get("/getAllPosts", async (req, res) => {
   const allPosts = await PostModel.find({});
   return res.json({ status: true, data: allPosts });
 });
->>>>>>> 693053c (adding searchfilter and historique)
 
 router.post("/myposts", async (req, res) => {
   try {

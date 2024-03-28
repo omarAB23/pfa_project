@@ -1,12 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-<<<<<<< HEAD
-
-=======
 import { Bounce, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
->>>>>>> 693053c (adding searchfilter and historique)
 const NavBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu visibility
@@ -44,9 +40,6 @@ const NavBar = () => {
 
   const checkUser = () => {
     if (!isLoggedIn) {
-<<<<<<< HEAD
-      alert("you need to sign-in");
-=======
       toast.warn("you need to sign-in", {
         position: "top-center",
         autoClose: 5000,
@@ -58,7 +51,6 @@ const NavBar = () => {
         theme: "light",
         transition: Bounce,
       });
->>>>>>> 693053c (adding searchfilter and historique)
     }
   };
 
@@ -68,11 +60,7 @@ const NavBar = () => {
         <div className="flex items-center justify-between">
           <div className="flex gap-4 text-white font-bold text-xl">
             <img src="/assets/logo.svg" alt="" />
-<<<<<<< HEAD
-            <a href="#">LinkRide</a>
-=======
             <Link to="/">LinkRide</Link>
->>>>>>> 693053c (adding searchfilter and historique)
           </div>
           <div className="hidden md:block">
             <ul className="flex items-center space-x-8">
@@ -87,10 +75,6 @@ const NavBar = () => {
                   <Link onClick={checkUser} className="text-white">
                     Ajouter un trajet
                   </Link>
-<<<<<<< HEAD
-                  <Link className="text-white">Contact</Link>
-=======
->>>>>>> 693053c (adding searchfilter and historique)
                 </>
               ) : (
                 <>
@@ -103,13 +87,9 @@ const NavBar = () => {
                   <Link to="publish-route" className="text-white">
                     Ajouter un trajet
                   </Link>
-<<<<<<< HEAD
-                  <Link className="text-white">Contact</Link>
-=======
                   <Link to="/profile" className="text-white">
                     Votre profile
                   </Link>
->>>>>>> 693053c (adding searchfilter and historique)
                 </>
               )}
 
@@ -153,60 +133,6 @@ const NavBar = () => {
         {isMobileMenuOpen && (
           <div className="mobile-menu md:hidden pb-4  ">
             <ul className="mt-4 space-y-4">
-<<<<<<< HEAD
-              <li>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-white bg-gray-900 rounded"
-                >
-                  Home
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-white bg-gray-900 rounded"
-                >
-                  About
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-white bg-gray-900 rounded"
-                >
-                  Services
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-white bg-gray-900 rounded"
-                >
-                  Contact
-                </a>
-              </li>
-              <li>
-                <a href="#" className="block px-4 py-2  text-center rounded">
-                  {!isLoggedIn ? (
-                    <Link
-                      className="text-white border-solid border border-white px-4 py-2 rounded transition duration-300 hover:bg-white hover:text-gray-800"
-                      to="/sign-up"
-                    >
-                      Get started
-                    </Link>
-                  ) : (
-                    <Link
-                      onClick={handleLogOut}
-                      className="text-white border-solid border border-white px-4 py-2 rounded transition duration-300 hover:bg-white hover:text-gray-800"
-                      to="/"
-                    >
-                      Sign-out
-                    </Link>
-                  )}
-                </a>
-              </li>
-=======
               {!isLoggedIn ? (
                 <>
                   <Link
@@ -275,7 +201,6 @@ const NavBar = () => {
                   </Link>
                 )}
               </div>
->>>>>>> 693053c (adding searchfilter and historique)
             </ul>
           </div>
         )}
