@@ -33,7 +33,12 @@ router.get('/getAllPosts',async (req,res)=>{
 
 
 
+router.get('/getUserPost', async (req,res)=>{
+    const {idFromToken} = req.body
+    const userPosts = await PostModel.find({idconducteur:idFromToken})
 
+    return res.json({status:true , data :userPosts})
+})
 
 
 

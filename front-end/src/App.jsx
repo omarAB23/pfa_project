@@ -31,7 +31,7 @@ const App = () => {
           <Route path="/search-result" element={<SearchResults/>}/>
           <Route path="/more-info" element={<MoreInfo/>}/>
           <Route path="/publish-route" element={<PublishRoute/>}/>
-          <Route path="/profile" element={<ProfileLayout/>}>
+          <Route  element={<ProfileLayout/>}>
             <Route path="/profile/mon-profile" element={<UserProfile/>}/>
             <Route path="/profile/mes-posts" element={<Mesposts/>}/>
             <Route path="/profile/delete-account" element={<DeleteAccount/>}/>

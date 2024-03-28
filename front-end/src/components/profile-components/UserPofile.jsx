@@ -5,7 +5,7 @@ import Modal from './profile-pic-components/Modal'
 const UserProfile = () => {
     const [nameFromToken , setNameFromToken] = useState('')
     const [emailFromToken , setEmailFromToken] = useState('')
-
+    
 
     const avatarUrl = useRef(
         "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.newyorker.com%2Fnews%2Fdaily-comment%2Fmonkey-see-monkey-click&psig=AOvVaw3q9K3jAduJNgKLh-K4Qv7w&ust=1711666404611000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCIje6bHElYUDFQAAAAAdAAAAABAE"
@@ -65,7 +65,7 @@ const UserProfile = () => {
                                     first name</label>
                                 <input type="text" id="first_name"
                                     className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                                    placeholder="Your first name" value={nameFromToken} required />
+                                    placeholder={nameFromToken}  required />
                             </div>
 
                             <div className="w-full">
@@ -74,7 +74,7 @@ const UserProfile = () => {
                                     last name</label>
                                 <input type="text" id="last_name"
                                     className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
-                                    placeholder="Your last name" value="Ferguson" required />
+                                    placeholder="Your last name"  />
                             </div>
                         </div>
 

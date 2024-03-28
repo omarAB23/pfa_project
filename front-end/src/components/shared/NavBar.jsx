@@ -75,7 +75,7 @@ const NavBar = () => {
                   <Link  to='/' className="text-white">Home</Link>
                   <Link  to='/search-result' className="text-white">rechercher</Link>
                   <Link  to='publish-route' className="text-white">ajouter un trajet</Link>
-                  <Link to='/profile' className="text-white">Votre profile</Link>
+                  <Link to='/profile/mon-profile' className="text-white">Votre profile</Link>
                 </>
               )}
               
@@ -104,14 +104,14 @@ const NavBar = () => {
                   <Link   to='/' className="block px-4 py-2 text-white bg-gray-900 rounded">Home</Link>
                   <Link onClick={checkUser}  className="block px-4 py-2 text-white bg-gray-900 rounded">rechercher</Link>
                   <Link onClick={checkUser}  className="block px-4 py-2 text-white bg-gray-900 rounded">ajouter un trajet</Link>
-                  <Link className="block px-4 py-2 text-white bg-gray-900 rounded">Contact</Link>
                 </>
               ) :(
                 <>
                   <Link  to='/' className="block px-4 py-2 text-white bg-gray-900 rounded">Home</Link>
                   <Link  to='/search-result' className="block px-4 py-2 text-white bg-gray-900 rounded">rechercher</Link>
                   <Link  to='publish-route' className="block px-4 py-2 text-white bg-gray-900 rounded">ajouter un trajet</Link>
-                  <Link className="block px-4 py-2 text-white bg-gray-900 rounded">Contact</Link>
+                  <Link to='/profile/mon-profile' className="block px-4 py-2 text-white bg-gray-900 rounded">Votre profile</Link>
+
                 </>
               )}
               
