@@ -4,7 +4,6 @@ import SignInForm from "./_auth/forms/SignInForm";
 import AuthLayout from "./_auth/AuthLayout";
 import RootLayout from "./_root/RootLayout";
 import Home from "./_root/pages/Home";
-
 import "./global.css";
 import SearchResults from "./_root/pages/SearchResults";
 import MoreInfo from "./_root/pages/MoreInfo";
@@ -17,6 +16,9 @@ import UserProfile from "./components/profile-components/UserPofile";
 import DeleteAccount from "./components/profile-components/DeleteAccount";
 import Notifications from "./components/profile-components/Notifications";
 import SearchWithFilter from "./_root/pages/SearchWithFilter";
+import Success from "./_root/pages/Success";
+import Paiment from "./_root/pages/paiment";
+import Fail from "./_root/pages/Fail";
 
 const App = () => {
   return (
@@ -34,6 +36,10 @@ const App = () => {
           <Route path="/more-info" element={<MoreInfo />} />
           <Route path="/SearchWithFilter" element={<SearchWithFilter />} />
           <Route path="/publish-route" element={<PublishRoute />} />
+          <Route path="/paiment" element={<Paiment />} />
+          <Route path="/success" element={<Success />} />
+          <Route path="/fail" element={<Fail />} />
+
           <Route element={<ProfileLayout />}>
             <Route path="/profile/mon-profile" element={<UserProfile />} />
             <Route path="/profile/mes-posts" element={<Mesposts />} />

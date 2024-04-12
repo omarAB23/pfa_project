@@ -29,7 +29,7 @@ const SearchResults = () => {
           post.depart.includes(filters.departure) &&
           post.arrivee.includes(filters.arrival) &&
           post.place >= filters.Nombre_de_place &&
-          post.price == price
+          post.price <= price
         );
       });
 

@@ -48,7 +48,7 @@ const PublishRoute = () => {
         console.log(response);
         if (response.data.status) {
           navigate("/");
-          toast.success(" post publuée", {
+          toast.success(" post publiée", {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,

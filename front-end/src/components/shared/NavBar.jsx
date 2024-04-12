@@ -11,13 +11,14 @@ const NavBar = () => {
 
   useEffect(() => {
     axios.get("http://localhost:3001/auth/verify").then((res) => {
+      console.log(res);
       if (res.data.status) {
         setIsLoggedIn(true);
       } else {
         setIsLoggedIn(false);
       }
     });
-  }, []);
+  }, [isLoggedIn]);
 
   const handleLogOut = () => {
     console.log("Logging out...");

@@ -6,6 +6,8 @@ const Post = (props) => {
 
   // Check if the date has expired
   const isExpired = new Date(post.date) < new Date();
+  const fourDaysAgo = new Date();
+  fourDaysAgo.setDate(fourDaysAgo.getDate() - 4);
 
   const handleClick = () => {
     const clickedPost = {
@@ -50,6 +52,9 @@ const Post = (props) => {
         <p className="mb-2 hidden sm:block text-base dark:text-gray-300 text-gray-700">
           Description : {post.desc.split(".")[0]}
         </p>
+        <p className="mb-2 hidden sm:block text-base dark:text-gray-300 text-gray-700">
+          Date : {post.date.substring(0, 10)}
+        </p>
         <div className="flex pt-5 sm:pt-3 items-center">
           <p className="mr-2 text-base dark:text-gray-300 text-gray-700">
             Review :
@@ -70,7 +75,7 @@ const Post = (props) => {
               {post.price}dt
             </p>
           </div>
-          {isExpired ? (
+          {isExpired && new Date(post.date) >= fourDaysAgo ? (
             <button
               className="bg-gray-400 text-white font-bold py-2 px-4 rounded-full"
               disabled
@@ -80,7 +85,7 @@ const Post = (props) => {
           ) : (
             <Link
               to="/more-info"
-              className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full"
+              className="bg-green-500 hover:bg-green-600  text-white font-bold py-2 px-4 rounded-full"
               onClick={handleClick}
             >
               Savoir plus

@@ -7,120 +7,59 @@ const Mesposts = () => {
   const [error, setError] = useState(null);
   const [nameFromToken, setNameFromToken] = useState("");
   const [idFromToken, setIdFromToken] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Fetch token
     axios
       .get("http://localhost:3001/auth/gettoken")
       .then((response) => {
         setNameFromToken(response.data.token.name);
-        console.log(response);
-        console.log(nameFromToken);
+        return response.data.token.name;
+      })
+      .then((nameFromToken) => {
+        // Fetch user data using token
         return axios.post("http://localhost:3001/auth/getuser", {
-          nameFromToken: response.data.token.name,
+          nameFromToken: nameFromToken,
         });
       })
       .then((response) => {
-        console.log(response, "hahaha");
+        console.log(response);
         const currentUser = response.data.currentUser;
-        console.log(currentUser);
+        setIdFromToken(currentUser._id);
+        console.log(idFromToken === currentUser._id);
+        console.log(idFromToken);
         console.log(currentUser._id);
-        if (currentUser && currentUser._id) {
-          setIdFromToken(currentUser._id);
-          console.log(idFromToken);
+        console.log(typeof currentUser._id);
+        console.log(typeof idFromToken);
 
-          // Move the axios.post inside this block
-          axios
-            .get("http://localhost:3001/post/getUserPost", {
-              id: currentUser._id,
-            })
-            .then((response) => {
-              console.log(response);
-              setData(response.data.data);
-              console.log(dataa);
-            })
-            .catch((error) => {
-              setError(error);
-            });
-        } else {
-          throw new Error("User ID not found in response data");
-        }
+        // Fetch user posts using user ID
+        return axios.post("http://localhost:3001/post/getUserPost", {
+          idFromToken,
+        });
+      })
+      .then((response) => {
+        console.log(response);
+        setData(response.data.data);
+        setLoading(false);
       })
       .catch((error) => {
         setError(error);
+        setLoading(false);
       });
-  }, []);
+  }, [idFromToken]); // Since idFromToken is not used in the initial fetch, dependency array is empty
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   if (error) {
-    return <div>Error:2 {error.message}</div>;
+    return <div>Error: {error.message}</div>;
   }
 
   return (
-    <div>
-      {dataa.map((post, index) => (
-        <div key={index}>
-          <div className="h-60 flex my-11 transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg">
-            <img
-              className="h-full w-1/3 object-cover object-center transform scale-95"
-              src="assets/wayp1.png"
-              alt="Product Image"
-            />
-            <div className="p-4 w-2/3">
-              <h2 className="mb-2 text-lg font-medium dark:text-white text-gray-900">
-                {post.nomconducteur}
-              </h2>
-              <p className="mb-2 text-base dark:text-gray-300 text-gray-700">
-                {post.depart}-{post.arrivee}, {post.date.substring(11, 16)} ,{" "}
-                {post.place} personnes{" "}
-              </p>
-              <p className="mb-2 hidden sm:block text-base dark:text-gray-300 text-gray-700">
-                Description : {post.desc.split(".")[0]}
-              </p>
-              <div className="flex pt-5 sm:pt-3 items-center">
-                <p className="mr-2 text-base dark:text-gray-300 text-gray-700">
-                  Review :
-                </p>
-                <img
-                  className="w-5 text-yellow-500"
-                  src="/assets/star.svg"
-                  alt=""
-                />
-                <img
-                  className="w-5 text-yellow-500"
-                  src="/assets/star.svg"
-                  alt=""
-                />
-                <img
-                  className="w-5 text-yellow-500"
-                  src="/assets/star.svg"
-                  alt=""
-                />
-                <img
-                  className="w-5 text-yellow-500"
-                  src="/assets/star.svg"
-                  alt=""
-                />
-                <img
-                  className="w-5 text-yellow-500"
-                  src="/assets/star.svg"
-                  alt=""
-                />
-              </div>
-
-              <div className="flex mt-9 sm:mt-3 items-center justify-between w-full">
-                <div className="flex items-center">
-                  <p className="mr-2 my-2 text-lg font-semibold text-gray-900 dark:text-white">
-                    prix :
-                  </p>
-                  <p className="text-base my-2 font-medium text-gray-500 dark:text-gray-300">
-                    {post.price}dt
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
+    <div>{dataa && dataa.map((post, i) => <Post key={i} post={post} />)}</div>
   );
 };
+
 export default Mesposts;
