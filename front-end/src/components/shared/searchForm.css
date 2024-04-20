@@ -104,3 +104,30 @@ input[type="datetime-local"] {
     
         
 }
+.depart,
+.check-in,
+.check-out,
+.guests {
+    flex: 1 1 100%;
+    max-width: 300px;
+    margin: 0.5rem;
+}
+
+.depart input,
+.check-in input,
+.check-out input,
+.guests input {
+    width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+
+    .depart,
+    .check-in,
+    .check-out,
+    .guests {
+        flex: 1 1 25%;
+        max-width: none;
+        margin: 0;
+    }
+}

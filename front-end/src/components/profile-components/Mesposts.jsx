@@ -58,7 +58,9 @@ const Mesposts = () => {
   }
 
   return (
-    <div>{dataa && dataa.map((post, i) => <Post key={i} post={post} />)}</div>
+    <div className="w-full h-full">
+      {dataa && dataa.map((post, i) => <Post key={i} post={post} />)}
+    </div>
   );
 };
 

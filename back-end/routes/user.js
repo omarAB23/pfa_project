@@ -76,6 +76,12 @@ router.post("/getuser", async (req, res) => {
   return res.json({ status: true, currentUser: currentUser });
 });
 
+router.post("/getuserById", async (req, res) => {
+  const Id = req.body.ID;
+  const currentUser = await UserModel.findOne({ _id: Id });
+  return res.json({ status: true, currentUser: currentUser });
+});
+
 router.get("/verify", verifyUser, (req, res) => {
   return res.json({ status: true, messaage: "authorised" });
 });

@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import wayp1 from "../../../public/assets/wayp1.png";
 
 const Post = (props) => {
   const { post, onClick } = props;
 
   // Check if the date has expired
   const isExpired = new Date(post.date) < new Date();
-  const fourDaysAgo = new Date();
-  fourDaysAgo.setDate(fourDaysAgo.getDate() - 4);
 
   const handleClick = () => {
     const clickedPost = {
@@ -25,20 +24,13 @@ const Post = (props) => {
     };
 
     sessionStorage.setItem("clickedPost", JSON.stringify(clickedPost));
-
-    /* sessionStorage.setItem(
-      "clickedPost",
-
-      clickedPost
-    );
-    onClick(); // Call the onClick callback to handle any additional actions */
   };
 
   return (
     <div className="h-60 flex my-11 transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg">
       <img
         className="h-full w-1/3 object-cover object-center transform scale-95"
-        src="assets/wayp1.png"
+        src={wayp1}
         alt="Product Image"
       />
       <div className="p-4 w-2/3">
@@ -75,7 +67,7 @@ const Post = (props) => {
               {post.price}dt
             </p>
           </div>
-          {isExpired && new Date(post.date) >= fourDaysAgo ? (
+          {isExpired ? (
             <button
               className="bg-gray-400 text-white font-bold py-2 px-4 rounded-full"
               disabled
@@ -85,7 +77,7 @@ const Post = (props) => {
           ) : (
             <Link
               to="/more-info"
-              className="bg-green-500 hover:bg-green-600  text-white font-bold py-2 px-4 rounded-full"
+              className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full"
               onClick={handleClick}
             >
               Savoir plus

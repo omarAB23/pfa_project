@@ -7,7 +7,6 @@ const UserRouter = require("./routes/user");
 const cookieParser = require("cookie-parser");
 const PostRouter = require("./routes/post");
 const ResRouter = require("./routes/reservation");
-const PayRouter = require("./routes/paiment");
 
 const PORT = process.env.PORT;
 
@@ -24,7 +23,7 @@ app.use(cookieParser());
 mongoose.connect("mongodb://127.0.0.1:27017/user");
 
 app.use("/auth", UserRouter);
-app.use("/api", PayRouter);
+
 app.use("/post", PostRouter);
 app.use("/res", ResRouter);
 

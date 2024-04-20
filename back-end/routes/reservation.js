@@ -71,5 +71,21 @@ router.put("/updateSeats", async (req, res) => {
   }
 });
 
+router.post("/getUserReservation", async (req, res) => {
+  const { idFromToken } = req.body;
+
+  // Search for posts where the user ID (idconducteur) matches idFromToken
+  const userRes = await Reservation.find({ id_conducteur: idFromToken });
+
+  if (!userRes) {
+    return res.json({
+      status: false,
+      message: "No Reservation found for this user",
+    });
+  }
+
+  return res.json({ status: true, data: userRes });
+});
+
 const ResRouter = router;
 module.exports = ResRouter;

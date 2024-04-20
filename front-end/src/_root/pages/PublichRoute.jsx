@@ -31,6 +31,32 @@ const PublishRoute = () => {
   async function submit(e) {
     e.preventDefault();
 
+    // Validation des champs
+    if (
+      !depart ||
+      !arrivee ||
+      !place ||
+      !contact ||
+      !price ||
+      !date ||
+      !condition ||
+      !desc
+    ) {
+      toast.error("Veuillez remplir tous les champs", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+      return; // Arrêtez l'exécution de la fonction si la validation échoue
+    }
+
+    // Si tous les champs sont remplis, procédez à la publication
     axios
       .post("http://localhost:3001/post/add", {
         depart,
@@ -48,7 +74,7 @@ const PublishRoute = () => {
         console.log(response);
         if (response.data.status) {
           navigate("/");
-          toast.success(" post publiée", {
+          toast.success("Publication réussie", {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,

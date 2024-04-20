@@ -218,7 +218,7 @@ const MoreInfo = () => {
               </div>
             )}
             <p className="text-base leading-relaxed text-gray-500">
-              le prix total est : {prix_total}
+              le prix total est : {prix_total} dt
             </p>
             <p className="text-base leading-relaxed text-gray-500">
               méthode de paiment :

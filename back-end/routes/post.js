@@ -42,5 +42,18 @@ router.post("/getUserPost", async (req, res) => {
   return res.json({ status: true, data: userPosts });
 });
 
+router.post("/getIdPost", async (req, res) => {
+  const { id } = req.body;
+
+  // Search for posts where the user ID (idconducteur) matches idFromToken
+  const idPosts = await PostModel.find({ _id: id });
+
+  if (!idPosts) {
+    return res.json({ status: false, message: "No posts found for this user" });
+  }
+
+  return res.json({ status: true, data: idPosts });
+});
+
 const PostRouter = router;
 module.exports = PostRouter;
